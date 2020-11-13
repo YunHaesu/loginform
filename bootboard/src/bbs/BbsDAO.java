@@ -137,7 +137,7 @@ public class BbsDAO {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
+			while (rs.next()) { 
 				return false;
 			}
 		} catch (SQLException e) {
