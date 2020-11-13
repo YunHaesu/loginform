@@ -226,7 +226,7 @@ public class BbsDAO {
 		}
 		return getViewList() / (widthBlock * pageRows);
 	}
-
+ 
 	public int currentBlock(int pageNumber) { // 현재 블록의 수
 		if (pageNumber % widthBlock > 0) {
 			return pageNumber / widthBlock + 1;
