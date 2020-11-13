@@ -140,7 +140,7 @@ public class BbsDAO {
 			while (rs.next()) { 
 				return false;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException e) { 
 			// TODO: handle exception
 			e.printStackTrace();
 		}
