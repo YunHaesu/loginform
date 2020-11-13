@@ -78,7 +78,7 @@ if (id == null) {
 			</thead>
 			<tbody>
 				<%
-					int pageNumber = 1;
+				int pageNumber = 1;
 				if (request.getParameter("pageNumber") != null) {
 					pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 				}
@@ -102,21 +102,78 @@ if (id == null) {
 		</table>
 
 		<%
-			bbsDAO.connClose();
+		String optPb = "";
+		String optPp = "";
+		String optNb = "";
+		String optNp = "";
+		if (pageNumber <= 1) {
+			optPp = " disabled";
+		}
+		if (pageNumber <= bbsDAO.getWidthBlock()) {
+			optPb = " disabled";
+		}
+		if (pageNumber >= bbsDAO.totalPage()) {
+			optNp = " disabled";
+		}
+		if (pageNumber > bbsDAO.totalPage() - bbsDAO.getWidthBlock()) {
+			optNb = " disabled";
+		}
 		%>
 		<nav aria-label="Page navigation">
 			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link" href="#">«</a></li>
-				<li class="page-item"><a class="page-link" href="#">‹</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">›</a></li>
-				<li class="page-item"><a class="page-link" href="#">»</a></li>
+				<li class="page-item<%=optPb%>" id="prevBlock"><a
+					class="page-link" aria-label="PreviousBlock"
+					href="bbs.jsp?pageNumber=<%=pageNumber - bbsDAO.getWidthBlock()%>">
+						<span aria-hidden="true">«</span><span class="sr-only">Previous
+							Block</span>
+				</a></li>
+				<li class="page-item<%=optPp%>" id="prevPage"><a
+					class="page-link" href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
+					aria-label="PreviousPage"> <span aria-hidden="true">‹</span><span
+						class="sr-only">Previous Page</span>
+				</a></li>
+				<%
+					String opt1 = "";
+					String opt2 = "";
+
+				int loopNum = bbsDAO.getWidthBlock();
+				if (bbsDAO.totalBlock() == bbsDAO.currentBlock(pageNumber)) {
+					loopNum = bbsDAO.totalPage() - bbsDAO.getWidthBlock() * (bbsDAO.totalBlock() - 1);
+				}
+				for (int i = 0; i < loopNum; i++) {
+					int now = (i + 1) + (bbsDAO.currentBlock(pageNumber) - 1) * bbsDAO.getWidthBlock();
+					if (now == pageNumber) {
+						opt1 = " active";
+						opt2 = " disabled";
+					}
+				%>
+				<li class="page-item<%=opt1%>"><a class="page-link<%=opt2%>"
+					href="bbs.jsp?pageNumber=<%=now%>"> <%=now%>
+				</a></li>
+				<%
+					opt1 = opt2 = "";
+				}
+				%>
+
+				<li class="page-item<%=optNp%>" id="nextPage"><a
+					class="page-link" aria-label="NextPage"
+					href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"> <span
+						aria-hidden="true"> ›</span><span class="sr-only">Next Page</span>
+				</a></li>
+				<li class="page-item<%=optNb%>" id="nextBlock"><a
+					class="page-link"
+					href="bbs.jsp?pageNumber=<%=pageNumber + bbsDAO.getWidthBlock()%>"
+					aria-label="NextBlock"> <span aria-hidden="true"> »</span><span
+						class="sr-only">Next Block</span>
+				</a></li>
 			</ul>
 		</nav>
+		<a class="write.jsp" class="btn btn-primary float-rigth <%=opt%>"
+			id="writeBtn">글쓰기</a>
 	</div>
-
+	<%
+		bbsDAO.connClose();
+	%>
 
 	<!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

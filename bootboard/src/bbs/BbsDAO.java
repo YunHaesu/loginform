@@ -92,11 +92,11 @@ public class BbsDAO {
 	}
 
 	public Vector<Bbs> getList(int pageNumber) {
-		String sql = "select * from bbs where bbsId < ? and bbsAvailable = 1 order by bbsId DESC LIMIT 10";
+		String sql = "select * from bbs where bbsId < ? and bbsAvailable = 1 order by bbsId DESC LIMIT "+ getPageRows();
 		Vector<Bbs> list = new Vector<Bbs>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * getPageRows());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Bbs bbs = new Bbs();
@@ -135,7 +135,7 @@ public class BbsDAO {
 		String sql = "select * from bbs where bbsId < ? and bbsAvailable = 1";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * getPageRows());
 			rs = pstmt.executeQuery();
 			while (rs.next()) { 
 				return false;
