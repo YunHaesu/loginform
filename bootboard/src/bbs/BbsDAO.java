@@ -132,19 +132,19 @@ public class BbsDAO {
 	}
 
 	public boolean nextPage(int pageNumber) {
-		String sql = "select * from bbs where bbsId <= ? and bbsAvailable = 1";
+		String sql = "select * from bbs where bbsId < ? and bbsAvailable = 1";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bbsCnt() - (pageNumber - 2) * 10);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				return true;
+				return false;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 
 	public Bbs getBbs(int bbsId) {
