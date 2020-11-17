@@ -61,10 +61,32 @@ login Form
 24. bbsDAO.java 추가
 
 
+
+
+
 /* 2020-11-17 */
+
+
+
+
+
+
+
+
 25. BoardListService.java 작성
 26. BoardListAction.java 작성
-27. board -> qna_board_list.jsp 
+27. board -> qna_board_list.jsp
+
+
+
+
+
+
+
+
+
+
+
 28.
 29.
 30.
