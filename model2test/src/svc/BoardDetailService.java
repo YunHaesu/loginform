@@ -24,7 +24,7 @@ public class BoardDetailService {
 			
 			article = boardDAO.selectArticle(board_num);
 			close(con);
-			return article;
+			return article; 
 			
 	
 	}
