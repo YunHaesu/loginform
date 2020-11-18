@@ -13,7 +13,7 @@ import action.Action;
 import action.BoardDetailAction;
 import action.BoardListAction;
 import action.BoardWriteProAction;
-import action.boardReplyFormAction;
+import action.BoardReplyFormAction;
 import vo.ActionForward;
 
 @WebServlet("*.do")
@@ -61,7 +61,7 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/boardReplyForm.do")){
-			action = new boardReplyFormAction();
+			action = new BoardReplyFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
