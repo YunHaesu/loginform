@@ -3,7 +3,7 @@
 <%@ page import="vo.BoardBean"%>
 <%
 	BoardBean article = (BoardBean) request.getAttribute("article");
-	String nowpage = (String) request.getAttribute("page");
+	String nowpage = (String) request.getAttribute("page"); 
 %>
 <!DOCTYPE html>
 <html>

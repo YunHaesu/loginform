@@ -9,7 +9,7 @@ import vo.BoardBean;
 
 public class BoardDetailService {
 
-	public BoardBean getArticle(int board_num) throws Exception{
+	public BoardBean getArticle(int board_num) throws Exception{ 
 			BoardBean article = null;
 			Connection con = getConnection();
 			BoardDAO boardDAO = BoardDAO.getInstance();

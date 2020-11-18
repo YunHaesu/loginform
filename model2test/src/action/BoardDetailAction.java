@@ -7,7 +7,7 @@ import svc.BoardDetailService;
 import vo.ActionForward;
 import vo.BoardBean;
 
-public class BoardDetailAction implements Action {
+public class BoardDetailAction implements Action { 
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

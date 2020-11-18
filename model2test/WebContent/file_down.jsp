@@ -4,7 +4,7 @@
 <%@ page import="java.io.File"%>
 <%@ page import="java.io.*"%>
 <%
-	String fileName = request.getParameter("file_name");
+	String fileName = request.getParameter("file_name"); 
 
 // 	String savePath = "boardUpload";
 // 	ServletContext context = getServletContext();

@@ -65,7 +65,7 @@ table {
 				<td class= "td_right"><input type = "text" name = "board_subject" id = "board_subject"></td>
 			</tr>
 			<tr>
-				<td class= "td_left"><label for = "board_content">내 용</label></td>
+				<td class= "td_left"><label for = "board_content">내 용</label></td> 
 				<td class= "td_rigth"><textarea cols = "40" rows = "15" name = "board_content" id = "board_content"></textarea></td>
 			</tr>
 		</table>
