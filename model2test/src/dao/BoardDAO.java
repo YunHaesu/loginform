@@ -133,7 +133,7 @@ public class BoardDAO {
 		try {
 			pstmt = conn.prepareStatement("select max(board_num) from board");
 			rs = pstmt.executeQuery();
-			
+			 
 			if(rs.next()) num = rs.getInt(1) + 1;
 			else num = 1;
 			
