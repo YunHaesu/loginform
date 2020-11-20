@@ -7,23 +7,25 @@ import dao.BoardDAO;
 import static db.JdbcUtil.*;
 import vo.BoardBean;
 
-public class BoardWriteProService {
+public class BoardReplyProService {
 
-	public boolean registArticle(BoardBean boardBean) {
-		boolean isWriteSuccess = false;
+	public boolean replyArticle(BoardBean article) {
+		boolean isReplySuccess = false;
+		int insertCount = 0;
 		Connection conn = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(conn);
-		int insertCount = boardDAO.insertArticle(boardBean);
+		insertCount = boardDAO.insertReplyArticle(article);
 		
 		if(insertCount > 0) {
 			commit(conn);
-			isWriteSuccess = true;
-		} else {
+			isReplySuccess = true;
+		}
+		else {
 			rollback(conn);
 		}
 		if(conn != null)close(conn);
-		return isWriteSuccess;
+		return isReplySuccess;
 	}
-	
+
 }
